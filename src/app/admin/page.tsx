@@ -1,8 +1,10 @@
 "use client"
 import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import supabase from "@/lib/db";
 import type { IMenu } from "@/types/menu";
+import { Ellipsis } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -44,7 +46,21 @@ const AdminPage = () => {
                                 <TableCell>{menu.description.split(' ').slice(0, 5).join(' ') + '...'}</TableCell>
                                 <TableCell>${menu.price}.00</TableCell>
                                 <TableCell>{menu.category}</TableCell>
-                                <TableCell></TableCell>
+                                <TableCell>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild className="cursor-pointer"><Ellipsis /></DropdownMenuTrigger>
+                                    <DropdownMenuContent className="w-56">
+                                        <DropdownMenuLabel className="font-bold">
+                                            Action
+                                        </DropdownMenuLabel>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuGroup>
+                                            <DropdownMenuItem className="text-yellow-500">Update</DropdownMenuItem>
+                                            <DropdownMenuItem className="text-red-500 ">Delete</DropdownMenuItem>
+                                        </DropdownMenuGroup>
+                                    </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
