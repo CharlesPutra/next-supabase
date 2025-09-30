@@ -1,5 +1,7 @@
+import { Button } from "@/components/ui/button";
 import supabase from "@/lib/db";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function DetailMenu({ params }: { params: Promise<{ id: string }> }) {
   // tunggu params dulu
@@ -27,9 +29,10 @@ export default async function DetailMenu({ params }: { params: Promise<{ id: str
       />
       <h1 className="mt-4 text-3xl font-bold">{menu.name}</h1>
       <p className="mt-2 text-gray-600">{menu.description}</p>
-      <p className="mt-4 text-xl font-semibold text-emerald-600">
+      <p className="mt-4 text-xl font-semibold text-emerald-600 mb-3">
         Rp {menu.price.toLocaleString()}
       </p>
+      <Link href={'/'}><Button>Kembali</Button></Link>
     </div>
   );
 }
