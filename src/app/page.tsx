@@ -7,8 +7,10 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
+
   const [menus, setMenus] = useState<IMenu[]>([]);
 
   useEffect(() => {
@@ -48,14 +50,16 @@ export default function Home() {
 
               <div className="p-4 flex justify-between">
                 <div>
-                  <h4 className="font-bold text-xl">{menu.name}</h4>
-                  <Badge variant={"outline"} className="rounded-full px-4 py-1 text-sm font-semibold border-2 border-emerald-500 text-emerald-600 bg-emerald-50">${menu.price}.00</Badge>
-                  <p className="text-gray-600">{menu.description}</p>
+                  <h4 className="font-bold text-xl mb-3">{menu.name}</h4>
+                  <Badge variant={"outline"} className="rounded-full px-4  py-1 text-sm font-semibold border-2 border-emerald-500 text-emerald-600 bg-emerald-50">${menu.price}.00</Badge>
                 </div>
               </div>
             </CardContent>
             <CardFooter>
-              <Button className="w-full" size={"lg"}>Buy Now</Button>
+              <Link href={`/menu/${menu.id}`} className="w-full">
+                <Button className="w-full" size={"lg"}>Detail</Button>
+              </Link>
+
             </CardFooter>
           </Card>
         ))}
